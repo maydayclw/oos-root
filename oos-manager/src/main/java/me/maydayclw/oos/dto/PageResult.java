@@ -18,6 +18,8 @@ public class PageResult<T> {
         this.total = total;
         this.rows = rows;
     }
+    public PageResult() {
+    }
 
     public long getTotal() {
         return total;

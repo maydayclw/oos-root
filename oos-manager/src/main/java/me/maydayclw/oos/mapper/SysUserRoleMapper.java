@@ -3,9 +3,10 @@ package me.maydayclw.oos.mapper;
 import me.maydayclw.oos.pojo.SysUserRole;
 import me.maydayclw.oos.pojo.SysUserRoleExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface SysUserRoleMapper {
     int countByExample(SysUserRoleExample example);
 

@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="Layer1" style="position:absolute; left:0; top:0; width:100%; height:100%">
-    <img src="${basePath}/images/background.jpg" width="100%" height="100%"/>
+    <img src="http://192.168.139.101/images/background.jpg" width="100%" height="100%"/>
 </div>
 <div class="container">
     <div class="modal fade login" id="loginModal">
