@@ -10,6 +10,9 @@
     <modules>
         <module>oos-common</module>
         <module>oos-manager</module>
+        <module>oos-rest</module>
+        <module>oos-web</module>
+        <module>oos-mapper</module>
     </modules>
     <packaging>pom</packaging>
 

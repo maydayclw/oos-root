@@ -138,25 +138,24 @@
                 $(this).parent().remove();
             });
         });
-
         //添加提交
         $("#templet_add_modal .submit").click(function () {
             var params = [];
             var groups = $("#templet_add_modal [name=group]");
-            groups.each(function(i,e){
+            groups.each(function (i, e) {
                 var p = $(e).parentsUntil("ul").parent().find("[name=param]");
                 var _ps = [];
-                p.each(function(_i,_e){
+                p.each(function (_i, _e) {
                     var _val = $(_e).val();
-                    if($.trim(_val).length>0){
+                    if ($.trim(_val).length > 0) {
                         _ps.push(_val);
                     }
                 });
                 var _val = $(e).val();
-                if($.trim(_val).length>0 && _ps.length > 0){
+                if ($.trim(_val).length > 0 && _ps.length > 0) {
                     params.push({
-                        "group":_val,
-                        "params":_ps
+                        "group": _val,
+                        "params": _ps
                     });
                 }
             });
@@ -175,9 +174,9 @@
             });
         });
 
-        //2.初始化Button的点击事件
-        /*  var oButtonInit = new ButtonInit();
-         oButtonInit.Init();*/
+        //初始化Button的点击事件
+        var oButtonInit = new ButtonInit();
+        oButtonInit.Init();
     });
 
     var TableInit = function () {
@@ -236,7 +235,6 @@
                 ]
             });
         };
-
         //得到查询的参数
         oTableInit.queryParams = function (params) {
             return {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
@@ -248,261 +246,47 @@
     };
 
 
-    /* var ButtonInit = function () {
-     var oInit = new Object();
-     var postdata = {};
+    var ButtonInit = function () {
+        var oInit = {};
+        var postdata = {};
 
-     oInit.Init = function () {
-     //重置
-     $("#user_form_reset").click(function () {
-     $("#userId").val("");
-     $("#email").val("");
-     $("#password").val("");
-     $("#re_password").val("");
-     $("#nickname").val("");
-     });
-     //清空
-     $("#user_form_clear").click(function () {
-     $("#edit_email").val("");
-     $("#edit_nickname").val("");
-     });
-     //分配角色
-     $("#user_form_allot").click(function () {
-     var $checkedArr = [];
-     $("input[name='roleArr']").each(function (i,d) {
-     if(d.checked){
-     $checkedArr.push(d.value);
-     }
-     });
-     console.log($checkedArr);
-     var arrselections = $("#user-table").bootstrapTable('getSelections');
-     if($checkedArr.length<1){
-     layer.msg("请选择要分配的角色");
-     }
-     var allot_edit_index = layer.load(1, {
-     shade: [0.1, '#fff']
-     });
-     console.log(arrselections[0]['id']);
-     $.ajax({
-     url: basePath + '/sys/allot',
-     type: "POST",
-     dataType:"json",
-     data: {
-     userId : arrselections[0]['id'],
-     roleArr: $checkedArr
-     },
-     success: function (result) {
-     if (result && result['success']) {
-     layer.close(allot_edit_index);
-     layer.alert(result['message'], {
-     skin: 'layui-layer-molv' //样式类名
-     , closeBtn: 0
-     }, function () {
-     window.location.href = basePath + '/user/list';
-     });
-     }else {
-     layer.close(allot_edit_index);
-     layer.msg(result['message']);
-     }
-     }
-     });
-     });
-     //添加用户
-     $("#user_form_add").click(function () {
-     var id = $("#userId").val();
-     var email = $("#email").val();
-     var password = $("#password").val();
-     var re_password = $("#re_password").val();
-     var nickname = $("#nickname").val();
+        oInit.Init = function () {
+            $("#btn_delete").click(function () {
+                var arrselections = $("#templet-table").bootstrapTable('getSelections');
+                if (arrselections.length <= 0) {
+                    layer.msg('请选择有效数据');
+                    return;
+                }
+                var delete_cofirm_index = layer.confirm('确认要删除选中的数据吗？', {
+                    btn: ['删除', '取消']
+                }, function () {
+                    $.ajax({
+                        url: basePath + '/paramTemplet/delete',
+                        type: "POST",
+                        dataType: "json",
+                        contentType: "application/json",
+                        data: JSON.stringify(arrselections),
+                        success: function (result) {
+                            layer.close(delete_cofirm_index);
+                            if (result && result['success']) {
+                                layer.alert("删除成功", {
+                                    skin: 'layui-layer-molv' //样式类名
+                                    , closeBtn: 0
+                                }, function () {
+                                    window.location.href = basePath + '/paramTemplet/list';
+                                });
+                            } else {
+                                layer.msg(result['message']);
+                            }
+                        }
+                    });
 
-     if (id == "") {
-     layer.msg("用户ID不能为空");
-     $('input[type="password"]').val('');
-     return false;
-     }
-     if (email == "") {
-     layer.msg("邮箱不能为空");
-     $('input[type="password"]').val('');
-     return false;
-     }
-     if (!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
-     layer.msg("邮箱不符合规则");
-     $('input[type="password"]').val('');
-     return false;
-     }
-     if (password == "") {
-     layer.msg("密码不能为空");
-     $('input[type="password"]').val('');
-     return false;
-     }
-     if (re_password == "") {
-     layer.msg("确认密码不能为空");
-     $('input[type="password"]').val('');
-     return false;
-     }
-     if (re_password != password) {
-     layer.msg("两次输入密码不一致");
-     $('input[type="password"]').val('');
-     return false;
-     }
-     var user_add_index = layer.load(1, {
-     shade: [0.1, '#fff'] //0.1透明度的白色背景
-     });
-     $.post(basePath + '/sys/register',
-     {
-     id: id,
-     username: nickname,
-     usercode: email,
-     password: password
-     },
-     function (result) {
-     layer.close(user_add_index);
-     if (result && result['success']) {
-     var message = result['data'];
-     var email = message['usercode'];
-     var role = message['role'];
-     layer.alert("添加成功，邮箱为:" + email + ",角色为:" + role, {
-     skin: 'layui-layer-molv' //样式类名
-     , closeBtn: 0
-     }, function () {
-     window.location.href = basePath + '/user/list';
-     });
+                });
+            });
+        };
 
-     } else {
-     var error = result['message'];
-     layer.msg(error);
-     }
-     },
-     'json'
-     );
-     });
-     //修改用户
-     $("#user_form_edit").click(function () {
-     var id = $("#edit_userId").val();
-     var email = $("#edit_email").val();
-     var nickname = $("#edit_nickname").val();
-     var locked = $("input:radio[name='radio']:checked").val();
-
-     if (id == "") {
-     layer.msg("用户ID不能为空");
-     return false;
-     }
-     if (email == "") {
-     layer.msg("邮箱不能为空");
-     return false;
-     }
-     if (!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
-     layer.msg("邮箱不符合规则");
-     return false;
-     }
-     if (nickname == "") {
-     layer.msg("用户名不能为空");
-     return false;
-     }
-     var user_edit_index = layer.load(1, {
-     shade: [0.1, '#fff']
-     });
-     $.post(basePath + '/user/update',
-     {
-     id: id,
-     username: nickname,
-     usercode: email,
-     locked: locked
-     },
-     function (result) {
-     layer.close(user_edit_index);
-     if (result && result['success']) {
-     layer.alert(result['message'], {
-     skin: 'layui-layer-molv' //样式类名
-     , closeBtn: 0
-     }, function () {
-     window.location.href = basePath + '/user/list';
-     });
-     } else {
-     var error = result['message'];
-     layer.msg(error);
-     }
-     },
-     'json'
-     );
-     });
-     $("#btn_edit").click(function () {
-     var arrselections = $("#user-table").bootstrapTable('getSelections');
-     if (arrselections.length > 1) {
-     layer.msg('只能选择一行进行编辑');
-     return;
-     }
-     if (arrselections.length <= 0) {
-     layer.msg('请选择有效数据');
-     return;
-     }
-     $("#edit_userId").val(arrselections[0].id).attr("disabled", true);
-     $("#edit_email").val(arrselections[0].usercode);
-     $("#edit_nickname").val(arrselections[0].username);
-     if (arrselections[0].locked == '1') {
-     $("#edit_lock").attr("checked", "checked");
-     }
-     $("#user_edit_modal").modal("show");
-     });
-
-     $("#btn_delete").click(function () {
-     var arrselections = $("#user-table").bootstrapTable('getSelections');
-     if (arrselections.length <= 0) {
-     layer.msg('请选择有效数据');
-     return;
-     }
-     var delete_cofirm_index = layer.confirm('确认要删除选中的数据吗？', {
-     btn: ['删除', '取消']
-     }, function () {
-     $.ajax({
-     url: basePath + '/user/delete',
-     type: "POST",
-     dataType: "json",
-     contentType: "application/json",
-     data: JSON.stringify(arrselections),
-     success: function (result) {
-     if (result && result['success']) {
-     layer.close(delete_cofirm_index);
-     layer.msg(result['message']);
-     window.location.href = basePath + '/user/list';
-     } else {
-     layer.close(delete_cofirm_index);
-     layer.msg(result['message']);
-     }
-     }
-     });
-
-     });
-     });
-     $("#btn_allot").click(function () {
-     var arrselections = $("#user-table").bootstrapTable('getSelections');
-     if (arrselections.length > 1) {
-     layer.msg('只能选择一行进行编辑');
-     return;
-     }
-     if (arrselections.length <= 0) {
-     layer.msg('请选择有效数据');
-     return;
-     }
-     $("#user_allot_form").empty();
-     //查询角色列表
-     $.post(basePath + '/role/all_data', {}, function (result) {
-     if (result) {
-     for (var i = 0; i < result.length; i++) {
-     var role = result[i];
-     $("#user_allot_form").append(' <div class="checkbox"> <label> <input type="checkbox" name="roleArr" value="' + role["id"] + '">' + role["name"] + '</label> </div>');
-     }
-     } else {
-     layer.msg("获取角色列表失败");
-     }
-     });
-     $("#user_allot_modal").modal('show');
-     });
-
-     };
-
-     return oInit;
-     };*/
+        return oInit;
+    };
 
     function showSelectCat(treeNode) {
         var id = treeNode['id'];

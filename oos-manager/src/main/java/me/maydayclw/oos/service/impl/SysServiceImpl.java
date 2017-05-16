@@ -8,7 +8,6 @@ import me.maydayclw.oos.pojo.*;
 import me.maydayclw.oos.service.SysService;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;

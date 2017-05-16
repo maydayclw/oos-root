@@ -10,24 +10,7 @@
 
     <!-- 加载配置文件 -->
     <context:property-placeholder location="classpath:properties/*.properties" />
-    <!-- 数据库连接池 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-          destroy-method="close">
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="maxActive" value="${druid.maxActive}" />
-        <property name="minIdle" value="${druid.minIdle}" />
-    </bean>
-    <!-- 让spring管理sqlSessionFactory -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <!-- 加载mybatis的全局配置文件 -->
-        <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
-    </bean>
-    <!--包扫描方式，加载mapper代理对象-->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="me.maydayclw.oos.mapper" />
-    </bean>
+    <!-- 包扫描器 -->
+    <context:component-scan base-package="me.maydayclw.oos.web.*"/>
+
 </beans>

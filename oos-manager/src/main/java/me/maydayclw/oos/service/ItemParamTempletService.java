@@ -2,6 +2,9 @@ package me.maydayclw.oos.service;
 
 import me.maydayclw.oos.dto.PageResult;
 import me.maydayclw.oos.pojo.ItemParamTemplet;
+import me.maydayclw.oos.pojo.ItemParamTempletDto;
+
+import java.util.List;
 
 /**
  * <p>Description  </p>
@@ -29,4 +32,10 @@ public interface ItemParamTempletService {
      * @return 影响行数
      */
     int insertItemParamTemplet(ItemParamTemplet itemParamTemplet) throws Exception;
+    /**
+     * 根据用户ID批量删除规格参数模板
+     * @param itemParamTempletList 规格参数列表
+     * @return 是否删除成功
+     */
+    boolean deleteItemParamTemplet(List<ItemParamTempletDto> itemParamTempletList);
 }

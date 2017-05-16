@@ -13,12 +13,13 @@
     <packaging>war</packaging>
 
     <dependencies>
-        <!--common-->
+        <!--mapper-->
         <dependency>
             <groupId>me.maydayclw</groupId>
-            <artifactId>oos-common</artifactId>
+            <artifactId>oos-mapper</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <!--Apache Shiro所需的jar包 -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -36,34 +37,7 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
         </dependency>
-        <!-- Mybatis -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.miemiedev</groupId>
-            <artifactId>mybatis-paginator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-        </dependency>
-        <!-- MySql -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!-- 连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-
+        <!--spring-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -157,26 +131,7 @@
         </dependency>
     </dependencies>
 
-
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.ini</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
         <plugins>
             <!-- 添加tomcat插件 -->
             <plugin>

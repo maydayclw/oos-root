@@ -4,7 +4,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import me.maydayclw.oos.dto.PageResult;
 import me.maydayclw.oos.mapper.ItemParamTempletMapper;
+import me.maydayclw.oos.mapper.ItemParamTempletMapperCustom;
 import me.maydayclw.oos.pojo.ItemParamTemplet;
+import me.maydayclw.oos.pojo.ItemParamTempletDto;
 import me.maydayclw.oos.pojo.ItemParamTempletExample;
 import me.maydayclw.oos.service.ItemParamTempletService;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class ItemParamTempletServiceImpl implements ItemParamTempletService {
 
     @Resource
     private ItemParamTempletMapper itemParamTempletMapper;
+    @Resource
+    private ItemParamTempletMapperCustom itemParamTempletMapperCustom;
 
     @Override
     public PageResult<ItemParamTemplet> getItemParamTempletList(Integer pageNumber, Integer pageSize) {
@@ -58,5 +62,11 @@ public class ItemParamTempletServiceImpl implements ItemParamTempletService {
         itemParamTemplet.setCreated(new Date());
         itemParamTemplet.setUpdated(new Date());
         return itemParamTempletMapper.insert(itemParamTemplet);
+    }
+
+    @Override
+    public boolean deleteItemParamTemplet(List<ItemParamTempletDto> itemParamTempletList) {
+        int count = itemParamTempletMapperCustom.deleteByIds(itemParamTempletList);
+        return count == itemParamTempletList.size();
     }
 }

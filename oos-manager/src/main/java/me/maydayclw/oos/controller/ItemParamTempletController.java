@@ -11,10 +11,7 @@ import me.maydayclw.oos.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -74,6 +71,17 @@ public class ItemParamTempletController {
         } catch (Exception e) {
             logger.error(e.getMessage());
             return new AjaxResult<>(false, "保存异常");
+        }
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public AjaxResult<Integer> delete(@RequestBody List<ItemParamTempletDto> itemParamTempletList){
+        boolean isDelete = itemParamTempletService.deleteItemParamTemplet(itemParamTempletList);
+        if(isDelete){
+            return new AjaxResult<>(true, "删除成功");
+        }else{
+            return new AjaxResult<>(false, "删除失败");
         }
     }
 
