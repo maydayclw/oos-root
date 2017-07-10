@@ -46,9 +46,9 @@ public class UserController {
     public AjaxResult<Integer> delete(@RequestBody List<SysUser> sysUserList){
         boolean status = sysService.deleteSysUsers(sysUserList);
         if(status){
-            return new AjaxResult<Integer>(true,"删除成功");
+            return new AjaxResult<>(true, "删除成功");
         }else{
-            return new AjaxResult<Integer>(false,"删除失败");
+            return new AjaxResult<>(false, "删除失败");
         }
     }
 

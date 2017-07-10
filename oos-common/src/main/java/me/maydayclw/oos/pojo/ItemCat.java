@@ -19,6 +19,8 @@ public class ItemCat {
 
     private Date updated;
 
+    private String pic;
+
     public Long getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class ItemCat {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic == null ? null : pic.trim();
     }
 }

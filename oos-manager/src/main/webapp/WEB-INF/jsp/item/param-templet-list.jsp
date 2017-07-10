@@ -11,8 +11,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
 
-    <link href="${basePath}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${basePath}/plugins/bootstrap/css/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="${basePath}/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="${basePath}/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet"/>
     <link href="${basePath}/plugins/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet"/>
 </head>
 
@@ -27,9 +27,6 @@
                         data-target="#templet_add_modal">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
                 </button>
-                <button id="btn_edit" type="button" class="btn btn-default">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-                </button>
                 <button id="btn_delete" type="button" class="btn btn-default">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
                 </button>
@@ -40,77 +37,11 @@
 </div>
 <jsp:include page="param-templet-add.jsp"></jsp:include>
 
-<div class="modal fade" id="user_edit_modal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="editModalLabel">修改用户</h4>
-            </div>
-            <div class="modal-body" id="user_edit_form">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label for="edit_userId" class="col-md-4 control-label">用户ID</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="edit_userId"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_email" class="col-md-4 control-label">邮箱</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="edit_email"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="edit_nickname" class="col-md-4 control-label">用户名</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="edit_nickname"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 col-md-offset-4 radio">
-                            <label class="checkbox-inline">
-                                <input type="radio" name="radio" id="edit_unlock" value="0" checked>不锁定
-                            </label>
-                        </div>
-                        <div class="col-md-2 radio">
-                            <label class="checkbox-inline">
-                                <input type="radio" name="radio" id="edit_lock" value="1">锁定
-                            </label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="user_form_clear">清空</button>
-                <button type="button" class="btn btn-primary" id="user_form_edit">修改</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-<div class="modal fade" id="user_allot_modal" tabindex="-1" role="dialog" aria-labelledby="allotModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="allotModalLabel">分配权限</h4>
-            </div>
-            <div class="modal-body" id="user_allot_form"><%--从数据库去除角色列表--%>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="user_form_allot">分配</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
 <script>var basePath = '${basePath}';</script>
 <script src="${basePath}/plugins/jquery/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}/plugins/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-<script src="${basePath}/plugins/bootstrap/js/bootstrap-table.min.js" type="text/javascript"></script>
-<script src="${basePath}/plugins/bootstrap/js/bootstrap-table-zh-CN.min.js" type="text/javascript"></script>
+<script src="${basePath}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${basePath}/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript"></script>
+<script src="${basePath}/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript"></script>
 <script src="${basePath}/plugins/zTree/js/jquery.ztree.core.js" type="text/javascript"></script>
 <script src="${basePath}/plugins/layer/layer.js"></script>
 <script>

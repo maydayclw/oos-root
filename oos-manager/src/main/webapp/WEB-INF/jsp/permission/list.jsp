@@ -19,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
 
     <link href="${basePath}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="${basePath}/plugins/bootstrap/css/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="${basePath}/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
 </head>
 
 <body style="padding: 5px;">
@@ -170,9 +170,9 @@
 
 <script>var basePath = '${basePath}';</script>
 <script src="${basePath}/plugins/jquery/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}/plugins/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-<script src="${basePath}/plugins/bootstrap/js/bootstrap-table.min.js" type="text/javascript"></script>
-<script src="${basePath}/plugins/bootstrap/js/bootstrap-table-zh-CN.min.js" type="text/javascript"></script>
+<script src="${basePath}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${basePath}/plugins/bootstrap-table/bootstrap-table.min.js" type="text/javascript"></script>
+<script src="${basePath}/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" type="text/javascript"></script>
 <script src="${basePath}/plugins/layer/layer.js"></script>
 <script>
 

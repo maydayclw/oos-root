@@ -1,8 +1,12 @@
 package me.maydayclw.oos.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.maydayclw.oos.dto.PageResult;
+import me.maydayclw.oos.pojo.Content;
+import me.maydayclw.oos.pojo.Item;
 
 import java.util.List;
 
@@ -28,8 +32,7 @@ public class JsonUtil {
      */
     public static String objectToJson(Object data) {
         try {
-            String string = MAPPER.writeValueAsString(data);
-            return string;
+            return MAPPER.writeValueAsString(data);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -45,6 +48,35 @@ public class JsonUtil {
     public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
         try {
             return MAPPER.readValue(jsonData, beanType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+ /**
+     * 将json结果集转化为对象
+     *
+     * @param jsonData json数据
+     * @return pojo
+     */
+    public static <T> T jsonToPageContent(String jsonData) {
+        try {
+            return MAPPER.readValue(jsonData, new TypeReference<PageResult<Content>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * 将json结果集转化为对象
+     *
+     * @param jsonData json数据
+     * @return pojo
+     */
+    public static <T> T jsonToPageItem(String jsonData) {
+        try {
+            return MAPPER.readValue(jsonData, new TypeReference<PageResult<Item>>() {});
         } catch (Exception e) {
             e.printStackTrace();
         }

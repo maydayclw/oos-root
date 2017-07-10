@@ -10,6 +10,7 @@
     <result column="is_parent" property="isParent" jdbcType="BIT" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, parent_id, name, status, sort_order, is_parent, created, updated
+    id, parent_id, name, status, sort_order, is_parent, created, updated, pic
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="me.maydayclw.oos.pojo.ItemCatExample" >
     select
@@ -105,10 +106,12 @@
   <insert id="insert" parameterType="me.maydayclw.oos.pojo.ItemCat" >
     insert into item_cat (id, parent_id, name, 
       status, sort_order, is_parent, 
-      created, updated)
+      created, updated, pic
+      )
     values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{sortOrder,jdbcType=INTEGER}, #{isParent,jdbcType=BIT}, 
-      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{pic,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="me.maydayclw.oos.pojo.ItemCat" >
     insert into item_cat
@@ -137,6 +140,9 @@
       <if test="updated != null" >
         updated,
       </if>
+      <if test="pic != null" >
+        pic,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +168,9 @@
       </if>
       <if test="updated != null" >
         #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +207,9 @@
       <if test="record.updated != null" >
         updated = #{record.updated,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +224,8 @@
       sort_order = #{record.sortOrder,jdbcType=INTEGER},
       is_parent = #{record.isParent,jdbcType=BIT},
       created = #{record.created,jdbcType=TIMESTAMP},
-      updated = #{record.updated,jdbcType=TIMESTAMP}
+      updated = #{record.updated,jdbcType=TIMESTAMP},
+      pic = #{record.pic,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +254,9 @@
       <if test="updated != null" >
         updated = #{updated,jdbcType=TIMESTAMP},
       </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -252,7 +268,8 @@
       sort_order = #{sortOrder,jdbcType=INTEGER},
       is_parent = #{isParent,jdbcType=BIT},
       created = #{created,jdbcType=TIMESTAMP},
-      updated = #{updated,jdbcType=TIMESTAMP}
+      updated = #{updated,jdbcType=TIMESTAMP},
+      pic = #{pic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

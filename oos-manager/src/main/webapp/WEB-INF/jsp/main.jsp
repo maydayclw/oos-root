@@ -37,7 +37,7 @@
                     <a href="javascript:;" id="clearShiroCache">清除缓存</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">商品展示</a>
+                    <a href="http://localhost:8082/oos/web/index.html" target="_blank">商品展示</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;" id="contract">联系管理员</a>

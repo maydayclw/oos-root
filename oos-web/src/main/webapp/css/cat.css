@@ -1,0 +1,70 @@
+@charset "utf-8";
+.color-mark{
+    background-color:#64C333;
+    display:inline-block;width:5px;height:20px;vertical-align:top;
+}
+.floor-name {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    color: #000;
+    line-height: 18px;
+    height: 18px;
+    margin-left: 10px;
+}
+.hot-word-con {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 800px;
+    text-align: right;
+}
+.hot-word {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 10px;
+    font-size: 14px;
+    border: none;
+    color: #000;
+}
+.big-banner-con {
+    float: left;
+    position: relative;
+    width: 246px;
+    height: 440px;
+}
+.one-grid{
+    width: 244px;
+    height: 220px;
+}
+.title {
+    margin-left: 30px;
+    top: 25px;
+    left: 25px;
+    width: 220px;
+    font-size: 18px;
+    z-index: 10;
+    line-height: 24px;
+    height: 24px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.one-grid img {
+    width: 154px;
+    height: 154px;
+    margin: 30px;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+.middle-column-con {
+    width: 735px;
+    height: 440px;
+    float: left;
+}
+.thumbnail img{
+    width: 154px;
+    height: 140px;
+}

@@ -66,7 +66,7 @@
                                             <input class="text-success" type="checkbox" name="rememberMe">记住我,自动登录
                                         </label>
                                     </div>
-                                    <input class="btn btn-default btn-login" type="button" value="登录"
+                                    <input class="btn btn-default btn-login" id="login" type="button" value="登录"
                                            onclick="loginAjax()">
                                 </form>
                             </div>
